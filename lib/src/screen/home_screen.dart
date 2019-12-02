@@ -10,7 +10,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_weather/src/bloc/weather_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
 
 class HomeScreenWidget extends StatefulWidget {
   final WeatherRepository weatherRepository = WeatherRepository(
@@ -128,21 +127,22 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                 if (weatherState is WeatherError) {
                   if (weatherState.errorCode == 404) {
                     errorText =
-                        'We have trouble fetching weather for $_cityName';
+                        'We have trouble fetching weather for "$_cityName"';
                   }
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(errorText),
+                      IconButton(
+                        icon: Icon(Icons.arrow_back_ios),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pushNamed(context, '/home');
+                        },
+                      )
+                    ],
+                  );
                 }
-                return Column(
-                  children: <Widget>[
-                    Text(errorText),
-                    IconButton(
-                      icon: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, '/home');
-                      },
-                    )
-                  ],
-                );
               }
               return Container();
             },

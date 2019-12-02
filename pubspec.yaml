@@ -30,6 +30,7 @@ dependencies:
   charts_flutter: ^0.6.0
   flutter_swiper : ^1.1.6
   flutter_google_places: ^0.2.3
+  flutter_launcher_icons: "^0.7.3"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -86,3 +87,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  # icon launch app
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/logo.png"
